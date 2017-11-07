@@ -2,6 +2,20 @@ img {
     width: 150px
 }
 
+nav ul {
+    list-style: none;
+    text-align: center
+}
+
+nav li {
+    display: inline;
+    margin-left: 2em
+}
+
+#company_name {
+    text-align: left
+}
+
 
 .product {
     border: 2px solid blue;

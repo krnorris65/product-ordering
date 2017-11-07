@@ -94,34 +94,39 @@ productDatabase.reviews.push(review1, review2, review3, review4, review5, review
 localStorage.setItem("betsyDatabase", JSON.stringify(productDatabase))
 
 },{"./navigation":2,"./productFactory":4,"./reviewFactory":6}],2:[function(require,module,exports){
+{
 const navEl = document.getElementById("navigation")
 
-const navBar = function () {
-    const navLinks = {
-        "categories": {
-            "page": "Categories",
-            "link": "#"
-        },
-        "orders": {
-            "page": "Orders",
-            "link": "#"
-        },
-        "logOut": {
-            "page": "Log Out",
-            "link": "#"
-        }
-    }
-
-    for(key in navLinks) {
-        let currentLink = navLinks[key]
-
-        navEl.innerHTML += `
-            <li id="nav_${currentLink.page}"><a href="${currentLink.link}">${currentLink.page}</a></li>
-        `
+const navLinks = {
+    "categories": {
+        "page": "Categories",
+        "link": "#"
+    },
+    "orders": {
+        "page": "Orders",
+        "link": "#"
+    },
+    "logOut": {
+        "page": "Log Out",
+        "link": "#"
     }
 }
 
-module.exports = navBar
+let navContent = `<li><h1 id="company_name" style="display:inline">Betsy Co.</h1></li>`
+
+for(key in navLinks) {
+    let currentLink = navLinks[key]
+
+    navContent += `
+        <li id="nav_${currentLink.page}"><a href="${currentLink.link}">${currentLink.page}</a></li>
+    `
+}
+
+navEl.innerHTML += navContent
+
+}
+
+module.exports = null
 },{}],3:[function(require,module,exports){
 const storedProducts = JSON.parse(localStorage.getItem("betsyDatabase")).products
 
