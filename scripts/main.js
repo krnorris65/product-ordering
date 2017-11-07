@@ -1,7 +1,13 @@
 const productFactory = require("./productFactory")
 const reviewFactory = require("./reviewFactory")
 
+const productDatabase = {
+    "products": [],
+    "reviews": []
+}
 
+
+//products to add to database
 const product1 = productFactory(
     "Otter Mug",
     "16 oz Ceramic mug with hand-painted otter image. Hand wash only",
@@ -26,64 +32,61 @@ const product3 = productFactory(
     "../img/otter_plush.jpg"
 )
 
-
-const reviewMug1 = reviewFactory(
+//reviews to add to database
+const review1 = reviewFactory(
     "Bob",
-    "Otter Mug",
+    101,
     "Disrupt twee echo park letterpress prism, cronut hot chicken heirloom shabby chic messenger bag fam paleo whatever coloring book ethical. Pop-up iPhone retro, kale chips palo santo fam biodiesel. Portland chillwave before they sold out church-key vaporware green juice iceland, etsy chartreuse mlkshk wayfarers skateboard."
 )
 
-const reviewMug2 = reviewFactory(
+const review2 = reviewFactory(
     "John",
-    "Otter Mug",
+    101,
     "Pork belly four dollar toast viral, four loko occupy raw denim brooklyn art party palo santo snackwave helvetica fashion axe you probably haven't heard of them."
 )
 
-const reviewMug3 = reviewFactory(
+const review3 = reviewFactory(
     "Anna",
-    "Otter Mug",
+    101,
     "Blue bottle photo booth banjo next level umami. Snackwave health goth roof party offal. Wolf yuccie whatever paleo gentrify. Butcher taiyaki roof party, lyft blue bottle activated charcoal skateboard microdosing tattooed vape before they sold out occupy enamel pin af VHS.")
 
-const reviewFigurine1 = reviewFactory(
+const review4 = reviewFactory(
     "Betty",
-    "Otter Figurine",
+    102,
     "Tote bag intelligentsia master cleanse distillery. Man bun literally taiyaki air plant before they sold out shaman keytar lo-fi flannel irony aesthetic umami."
 )
 
-const reviewFigurine2 = reviewFactory(
+const review5 = reviewFactory(
     "Jack",
-    "Otter Figurine",
+    102,
     "Crucifix lomo shabby chic freegan, hoodie viral lumbersexual bushwick blue bottle green juice mumblecore ramps. Snackwave tumblr iPhone kitsch shaman hammock slow-carb humblebrag echo park synth butcher chartreuse marfa occupy."
 )
 
-const reviewFigurine3 = reviewFactory(
+const review6 = reviewFactory(
     "Cody",
-    "Otter Figurine",
+    102,
     "Fam vaporware hammock, humblebrag affogato lo-fi vape asymmetrical gluten-free cronut DIY craft beer. Portland organic heirloom distillery man bun, biodiesel semiotics."
 )
 
-const reviewPlush1 = reviewFactory(
-    "Cody",
-    "Plush Otter",
+const review7 = reviewFactory(
+    "Aaron",
+    103,
     "Woke meditation jianbing dreamcatcher man braid roof party intelligentsia. Tousled chicharrones green juice skateboard, cardigan next level polaroid fingerstache."
 )
 
-const reviewPlush2 = reviewFactory(
+const review8 = reviewFactory(
     "Jerry",
-    "Plush Otter",
+    103,
     "Knausgaard sartorial actually vaporware drinking vinegar hexagon, flannel marfa cred vice. Fanny pack glossier venmo, chillwave cred tbh pinterest enamel pin cray tote bag 8-bit kinfolk."
 )
 
-const reviewPlush3 = reviewFactory(
+const review9 = reviewFactory(
     "Art",
-    "Plush Otter",
+    103,
     "Kombucha pickled farm-to-table brunch woke food truck you probably haven't heard of them migas. Cold-pressed umami kogi typewriter salvia leggings chia echo park."
 )
 
-const productDatabase = {}
+productDatabase.products.push(product1, product2, product3)
+productDatabase.reviews.push(review1, review2, review3, review4, review5, review6, review7, review8, review9)
 
-productDatabase.products = [product1, product2, product3]
-productDatabase.reviews = [reviewMug1, reviewMug2, reviewMug3, reviewFigurine1, reviewFigurine2, reviewFigurine3, reviewPlush1, reviewPlush2, reviewPlush3]
-
-
-localStorage.setItem("productDatabase", JSON.stringify(productDatabase))
+localStorage.setItem("betsyDatabase", JSON.stringify(productDatabase))

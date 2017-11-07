@@ -1,7 +1,7 @@
-const reviewFactory = (author, product, review) => {
+const reviewFactory = (author, productId, review) => {
     return Object.create(null,{
-        "product": {
-            value: product,
+        "productId": {
+            value: productId,
             enumerable: true
         },
         "author": {

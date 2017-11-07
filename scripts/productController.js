@@ -1,23 +1,24 @@
-const storedProducts = JSON.parse(localStorage.getItem("productDatabase")).products
+const storedProducts = JSON.parse(localStorage.getItem("betsyDatabase")).products
 
-const productsEl = document.getElementById("products_section")
+// const productsEl = document.getElementById("products_section")
 
 let productsContent = ""
 
 const updateProducts = storedProducts.forEach( (product) => {
     productsContent += `
-        <section id="product_${product.productId}">
+        <article id="product_${product.productId}">
             <h1>${product.title}</h1>
             <img src="${product.image}" alt="${product.title}">
             <p>${product.description}</p>
-            <p>${product.price}</p>
-            <p>${product.quantity}</p>
-        </section>
-        <section id="review_${product.productId}>
-        </section>
+            <p>Price: ${product.price}</p>
+            <p>Number Available: ${product.quantity}</p>
+            <section class="reviews review_${product.productId}">
+                <p>Reviews of ${product.title}</p>
+            </section>
+        </article>
     `
 
 })
-productsEl.innerHTML += productsContent
+// productsEl.innerHTML += productsContent
 
 module.exports = updateProducts
