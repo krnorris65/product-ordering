@@ -6,15 +6,15 @@ let productsContent = ""
 
 const updateProducts = storedProducts.forEach( (product) => {
     productsContent += `
-        <article id="product_${product.productId}">
-            <section class="product_info">
+        <article id="product_${product.productId}" class="product">
+            <section id="info_${product.productId}" class="info">
                 <h1>${product.title}</h1>
                 <img src="${product.image}" alt="${product.title}">
                 <p>${product.description}</p>
                 <p>Price: ${product.price}</p>
                 <p>Number Available: ${product.quantity}</p>
             </section>
-            <section class="reviews review_${product.productId}">
+            <section id="review_${product.productId}" class="review">
                 <h1>Reviews of ${product.title}</h1>
             </section>
         </article>

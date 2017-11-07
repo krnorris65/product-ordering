@@ -1,6 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 const productFactory = require("./productFactory")
 const reviewFactory = require("./reviewFactory")
+const navBar = require("./navigation")
 
 const productDatabase = {
     "products": [],
@@ -92,7 +93,36 @@ productDatabase.reviews.push(review1, review2, review3, review4, review5, review
 
 localStorage.setItem("betsyDatabase", JSON.stringify(productDatabase))
 
-},{"./productFactory":3,"./reviewFactory":5}],2:[function(require,module,exports){
+},{"./navigation":2,"./productFactory":4,"./reviewFactory":6}],2:[function(require,module,exports){
+const navEl = document.getElementById("navigation")
+
+const navBar = function () {
+    const navLinks = {
+        "categories": {
+            "page": "Categories",
+            "link": "#"
+        },
+        "orders": {
+            "page": "Orders",
+            "link": "#"
+        },
+        "logOut": {
+            "page": "Log Out",
+            "link": "#"
+        }
+    }
+
+    for(key in navLinks) {
+        let currentLink = navLinks[key]
+
+        navEl.innerHTML += `
+            <li id="nav_${currentLink.page}"><a href="${currentLink.link}">${currentLink.page}</a></li>
+        `
+    }
+}
+
+module.exports = navBar
+},{}],3:[function(require,module,exports){
 const storedProducts = JSON.parse(localStorage.getItem("betsyDatabase")).products
 
 const productsEl = document.getElementById("products_section")
@@ -101,15 +131,15 @@ let productsContent = ""
 
 const updateProducts = storedProducts.forEach( (product) => {
     productsContent += `
-        <article id="product_${product.productId}">
-            <section class="product_info">
+        <article id="product_${product.productId}" class="product">
+            <section id="info_${product.productId}" class="info">
                 <h1>${product.title}</h1>
                 <img src="${product.image}" alt="${product.title}">
                 <p>${product.description}</p>
                 <p>Price: ${product.price}</p>
                 <p>Number Available: ${product.quantity}</p>
             </section>
-            <section class="reviews review_${product.productId}">
+            <section id="review_${product.productId}" class="review">
                 <h1>Reviews of ${product.title}</h1>
             </section>
         </article>
@@ -119,7 +149,7 @@ const updateProducts = storedProducts.forEach( (product) => {
 productsEl.innerHTML += productsContent
 
 module.exports = updateProducts
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 const updateProducts = require("./productController")
 
 const idFactory = function*() {
@@ -166,26 +196,34 @@ const productFactory = (title, description, price, quantity, image) => {
 
 module.exports = productFactory
 
-},{"./productController":2}],4:[function(require,module,exports){
+},{"./productController":3}],5:[function(require,module,exports){
 const storedReviews = JSON.parse(localStorage.getItem("betsyDatabase")).reviews
 
-const reviewsEl = document.getElementsByClassName("reviews")
+// const classArray = Array.from(reviewsEl)
+// const reviewList = classArray.forEach()
 
-let reviewsContent = ""
 
 const updateReviews = storedReviews.forEach( (review) => {
-    reviewsContent += `
-        <p>${review.review}</p>
-        <p>written by: ${review.author}</p>
-    `
+    let reviewContent = ""
+    const currentProductId = `${review.productId}`
+    if(currentProductId) {
+        const reviewId = "review_" + currentProductId
+        const currentReviewEl = document.getElementById(reviewId)
+        reviewContent += `
+            <section class="user_review">
+                <p>${review.review}</p>
+                <p>written by: ${review.author}</p>
+            </section>
+        `
+        currentReviewEl.innerHTML += reviewContent
+    }
 })
 
-reviewsEl.innerHTML += reviewsContent
 
 // if the productId of the review is the same of the productId on the product then insert the review in that review section
 
-// module.exports = updateReviews
-},{}],5:[function(require,module,exports){
+module.exports = updateReviews
+},{}],6:[function(require,module,exports){
 const updateReviews = require("./reviewController")
 
 const reviewFactory = (author, productId, review) => {
@@ -206,4 +244,4 @@ const reviewFactory = (author, productId, review) => {
 }
 
 module.exports = reviewFactory
-},{"./reviewController":4}]},{},[1]);
+},{"./reviewController":5}]},{},[1]);

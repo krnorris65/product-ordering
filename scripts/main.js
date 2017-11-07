@@ -1,5 +1,6 @@
 const productFactory = require("./productFactory")
 const reviewFactory = require("./reviewFactory")
+const navBar = require("./navigation")
 
 const productDatabase = {
     "products": [],

@@ -1,3 +1,33 @@
 img {
-    width: 200px
+    width: 150px
+}
+
+.product {
+    border: 2px solid blue;
+    width: 80%;
+    margin-bottom: 10px
+}
+
+.info {
+    text-align: center
+}
+.review {
+    border-top: 1px solid lightblue
+}
+
+.user_review:nth-last-of-type(even) {
+    background-color: lightblue 
+}
+
+.user_review:nth-last-of-type(odd) {
+    background-color: paleturquoise 
+}
+
+.user_review p {
+    margin-bottom: 0;
+    margin-top: 0
+}
+
+.user_review {
+    padding: 1em
 }
