@@ -91,7 +91,37 @@ productDatabase.products.push(product1, product2, product3)
 productDatabase.reviews.push(review1, review2, review3, review4, review5, review6, review7, review8, review9)
 
 localStorage.setItem("betsyDatabase", JSON.stringify(productDatabase))
-},{"./productFactory":2,"./reviewFactory":3}],2:[function(require,module,exports){
+
+},{"./productFactory":3,"./reviewFactory":5}],2:[function(require,module,exports){
+const storedProducts = JSON.parse(localStorage.getItem("betsyDatabase")).products
+
+const productsEl = document.getElementById("products_section")
+
+let productsContent = ""
+
+const updateProducts = storedProducts.forEach( (product) => {
+    productsContent += `
+        <article id="product_${product.productId}">
+            <section class="product_info">
+                <h1>${product.title}</h1>
+                <img src="${product.image}" alt="${product.title}">
+                <p>${product.description}</p>
+                <p>Price: ${product.price}</p>
+                <p>Number Available: ${product.quantity}</p>
+            </section>
+            <section class="reviews review_${product.productId}">
+                <h1>Reviews of ${product.title}</h1>
+            </section>
+        </article>
+    `
+
+})
+productsEl.innerHTML += productsContent
+
+module.exports = updateProducts
+},{}],3:[function(require,module,exports){
+const updateProducts = require("./productController")
+
 const idFactory = function*() {
     let idNum = 101
 
@@ -136,7 +166,28 @@ const productFactory = (title, description, price, quantity, image) => {
 
 module.exports = productFactory
 
-},{}],3:[function(require,module,exports){
+},{"./productController":2}],4:[function(require,module,exports){
+const storedReviews = JSON.parse(localStorage.getItem("betsyDatabase")).reviews
+
+const reviewsEl = document.getElementsByClassName("reviews")
+
+let reviewsContent = ""
+
+const updateReviews = storedReviews.forEach( (review) => {
+    reviewsContent += `
+        <p>${review.review}</p>
+        <p>written by: ${review.author}</p>
+    `
+})
+
+reviewsEl.innerHTML += reviewsContent
+
+// if the productId of the review is the same of the productId on the product then insert the review in that review section
+
+// module.exports = updateReviews
+},{}],5:[function(require,module,exports){
+const updateReviews = require("./reviewController")
+
 const reviewFactory = (author, productId, review) => {
     return Object.create(null,{
         "productId": {
@@ -155,4 +206,4 @@ const reviewFactory = (author, productId, review) => {
 }
 
 module.exports = reviewFactory
-},{}]},{},[1]);
+},{"./reviewController":4}]},{},[1]);

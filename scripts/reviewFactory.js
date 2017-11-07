@@ -1,3 +1,5 @@
+const updateReviews = require("./reviewController")
+
 const reviewFactory = (author, productId, review) => {
     return Object.create(null,{
         "productId": {

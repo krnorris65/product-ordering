@@ -1,3 +1,5 @@
+const updateProducts = require("./productController")
+
 const idFactory = function*() {
     let idNum = 101
 

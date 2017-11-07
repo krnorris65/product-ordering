@@ -1,6 +1,6 @@
 const storedReviews = JSON.parse(localStorage.getItem("betsyDatabase")).reviews
 
-// const reviewsEl = document.getElementsByClassName("reviews")
+const reviewsEl = document.getElementsByClassName("reviews")
 
 let reviewsContent = ""
 
@@ -11,8 +11,8 @@ const updateReviews = storedReviews.forEach( (review) => {
     `
 })
 
-// reviewsEl.innerHTML += reviewsContent
+reviewsEl.innerHTML += reviewsContent
 
 // if the productId of the review is the same of the productId on the product then insert the review in that review section
 
-module.exports = updateReviews
+// module.exports = updateReviews
