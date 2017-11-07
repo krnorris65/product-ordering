@@ -133,11 +133,11 @@ const updateProducts = storedProducts.forEach( (product) => {
     productsContent += `
         <article id="product_${product.productId}" class="product">
             <section id="info_${product.productId}" class="info">
-                <h1>${product.title}</h1>
+                <h1 class="title">${product.title}</h1>
                 <img src="${product.image}" alt="${product.title}">
-                <p>${product.description}</p>
-                <p>Price: ${product.price}</p>
-                <p>Number Available: ${product.quantity}</p>
+                <p class="description">${product.description}</p>
+                <p class="price">Price: ${product.price}</p>
+                <p class="quantity">Number Available: ${product.quantity}</p>
             </section>
             <section id="review_${product.productId}" class="review">
                 <h1>Reviews of ${product.title}</h1>
@@ -199,20 +199,17 @@ module.exports = productFactory
 },{"./productController":3}],5:[function(require,module,exports){
 const storedReviews = JSON.parse(localStorage.getItem("betsyDatabase")).reviews
 
-// const classArray = Array.from(reviewsEl)
-// const reviewList = classArray.forEach()
-
 
 const updateReviews = storedReviews.forEach( (review) => {
     let reviewContent = ""
-    const currentProductId = `${review.productId}`
+    const currentProductId = `${review.productId}` //get the product id
     if(currentProductId) {
-        const reviewId = "review_" + currentProductId
-        const currentReviewEl = document.getElementById(reviewId)
+        const reviewId = "review_" + currentProductId //id of corresponding review section
+        const currentReviewEl = document.getElementById(reviewId) //get the corresponding review section
         reviewContent += `
             <section class="user_review">
                 <p>${review.review}</p>
-                <p>written by: ${review.author}</p>
+                <p class="author">written by: ${review.author}</p>
             </section>
         `
         currentReviewEl.innerHTML += reviewContent
@@ -220,7 +217,6 @@ const updateReviews = storedReviews.forEach( (review) => {
 })
 
 
-// if the productId of the review is the same of the productId on the product then insert the review in that review section
 
 module.exports = updateReviews
 },{}],6:[function(require,module,exports){

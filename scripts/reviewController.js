@@ -1,19 +1,16 @@
 const storedReviews = JSON.parse(localStorage.getItem("betsyDatabase")).reviews
 
-// const classArray = Array.from(reviewsEl)
-// const reviewList = classArray.forEach()
-
 
 const updateReviews = storedReviews.forEach( (review) => {
     let reviewContent = ""
-    const currentProductId = `${review.productId}`
+    const currentProductId = `${review.productId}` //get the product id
     if(currentProductId) {
-        const reviewId = "review_" + currentProductId
-        const currentReviewEl = document.getElementById(reviewId)
+        const reviewId = "review_" + currentProductId //id of corresponding review section
+        const currentReviewEl = document.getElementById(reviewId) //get the corresponding review section
         reviewContent += `
             <section class="user_review">
                 <p>${review.review}</p>
-                <p>written by: ${review.author}</p>
+                <p class="author">written by: ${review.author}</p>
             </section>
         `
         currentReviewEl.innerHTML += reviewContent
@@ -21,6 +18,5 @@ const updateReviews = storedReviews.forEach( (review) => {
 })
 
 
-// if the productId of the review is the same of the productId on the product then insert the review in that review section
 
 module.exports = updateReviews

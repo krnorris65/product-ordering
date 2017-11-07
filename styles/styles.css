@@ -2,9 +2,11 @@ img {
     width: 150px
 }
 
+
 .product {
     border: 2px solid blue;
     width: 80%;
+    margin: auto;
     margin-bottom: 10px
 }
 
